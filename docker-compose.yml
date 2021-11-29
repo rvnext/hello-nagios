@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+  nagios:
+    image: manios/nagios:latest
+    volumes:
+      - ./etc/:/opt/nagios/etc/
+      - ./var/:/opt/nagios/var/
+      - ./ssmtp.conf:/etc/ssmtp/ssmtp.conf
+      - ./customplugins/:/opt/Custom-Nagios-Plugins/
+    ports:
+      - "9080:80"
+    environment:
+      - NAGIOSADMIN_USER=nagiosadmin
+      - NAGIOSADMIN_PASS=nagios
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+     - "9025:8025"
+    
+
+volumes:
+    nagiosetc:
+    nagiosvar:
+    nagiosssmtp:
+    customplugins:
